@@ -4,31 +4,27 @@ import ExpenseItem from "../ExpenseItem/ExpenseItem";
 import Card from "../Card/Card";
 import "./Expenses.css";
 import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
+import ExpensesList from "../ExpensesList/ExpensesList";
 
-const Expenses = (props) => {
+const Expenses = ({ expenses }) => {
   const [filteredYear, setFilteredYear] = useState("2021");
 
   const changeFilterHandler = (year) => {
     setFilteredYear(year);
   };
 
+  const filteredExpenses = expenses.filter(
+    (item) => item.date.getFullYear() === parseInt(filteredYear)
+  );
+
   return (
-    <div>
+    <Card className="expenses">
       <ExpensesFilter
         selectedYear={filteredYear}
         onChageFilter={changeFilterHandler}
       ></ExpensesFilter>
-      <Card className="expenses">
-        {props.expenses.map((item) => (
-          <ExpenseItem
-            key={item.id}
-            title={item.title}
-            amount={item.amount}
-            date={item.date}
-          ></ExpenseItem>
-        ))}
-      </Card>
-    </div>
+      <ExpensesList items={filteredExpenses}></ExpensesList>
+    </Card>
   );
 };
 

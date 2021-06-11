@@ -22,7 +22,7 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
     const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
-      date: enteredDate,
+      date: new Date(enteredDate),
     };
 
     setEnteredTitle("");
