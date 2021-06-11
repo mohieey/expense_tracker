@@ -5,6 +5,7 @@ import Card from "../Card/Card";
 import "./Expenses.css";
 import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
 import ExpensesList from "../ExpensesList/ExpensesList";
+import ExpensesChart from "../ExpensesChart/ExpenesChart";
 
 const Expenses = ({ expenses }) => {
   const [filteredYear, setFilteredYear] = useState("2021");
@@ -23,6 +24,7 @@ const Expenses = ({ expenses }) => {
         selectedYear={filteredYear}
         onChageFilter={changeFilterHandler}
       ></ExpensesFilter>
+      <ExpensesChart expenses={filteredExpenses}></ExpensesChart>
       <ExpensesList items={filteredExpenses}></ExpensesList>
     </Card>
   );
